@@ -5,6 +5,9 @@ import Post from "@/type/post";
 export async function getPosts(page = 1, category_id = "") {
   const { data } = await axios.get<LaravelResponse<Post[]>>("/posts", {
     params: { page, category_id },
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+    },
   });
   return data;
 }
